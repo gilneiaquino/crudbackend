@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.crudbackend.dto.EnderecoFormAlteracao;
 import br.com.crudbackend.dto.EnderecoFormInclusao;
 import br.com.crudbackend.modelo.Endereco;
 import br.com.crudbackend.repository.EnderecoRepository;
@@ -37,8 +38,8 @@ public class EnderecoController {
 	}
 
 	@PostMapping("alterar")
-	public Endereco Alterar(Endereco endereco) {		
-		return enderecoRepository.save(endereco);
+	public Endereco Alterar(@RequestBody @Valid EnderecoFormAlteracao formAlteracao) { 
+		return enderecoRepository.save(new Endereco(formAlteracao));
 	}
 
 	@PostMapping("excluir/{id}")

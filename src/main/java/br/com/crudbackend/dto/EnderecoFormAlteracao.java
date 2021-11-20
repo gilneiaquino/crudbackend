@@ -6,14 +6,15 @@ import org.hibernate.validator.constraints.Length;
 
 import com.sun.istack.NotNull;
 
-public class EnderecoFormInclusao {
-	
-	private Long id;
+public class EnderecoFormAlteracao {
    
+	@NotNull  
+	private Long id;
+	
 	@NotNull @NotEmpty
 	private String streetName;
 	
-	@NotNull 
+	@NotNull  
 	private Long number;
 	
 	private String complement;
