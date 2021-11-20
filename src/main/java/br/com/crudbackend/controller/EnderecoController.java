@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.crudbackend.dto.EnderecoFormInclusao;
 import br.com.crudbackend.modelo.Endereco;
 import br.com.crudbackend.repository.EnderecoRepository;
 
@@ -26,9 +28,9 @@ public class EnderecoController {
 
 	@PostMapping("cadastrar")
 	@Transactional
-	public ResponseEntity<Endereco> cadastrar(@RequestBody Endereco endereco, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<Endereco> cadastrar(@RequestBody @Valid EnderecoFormInclusao formInclusao, UriComponentsBuilder uriBuilder) {
 
-		enderecoRepository.save(endereco);
+		Endereco endereco = enderecoRepository.save(new Endereco(formInclusao));
 
 		URI uri = uriBuilder.path("/endereco/alterar/{id}").buildAndExpand(endereco.getId()).toUri();
 		return ResponseEntity.created(uri).body(endereco);

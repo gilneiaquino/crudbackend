@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import br.com.crudbackend.dto.EnderecoFormInclusao;
+
 @Entity
 public class Endereco {
 	
@@ -40,6 +42,21 @@ public class Endereco {
 		this.zipcode = zipcode;
 		this.latitude = latitude;
 		this.longitude = longitude;
+	}
+	
+	public Endereco(EnderecoFormInclusao formInclusao) {
+		super(); 
+		this.id = 0L; 
+		this.streetName = formInclusao.getStreetName();
+		this.number = formInclusao.getNumber();
+		this.complement = formInclusao.getComplement();
+		this.neighbourhood = formInclusao.getNeighbourhood();
+		this.city = formInclusao.getCity();
+		this.state = formInclusao.getState();
+		this.country = formInclusao.getState();
+		this.zipcode = formInclusao.getZipcode();
+		this.latitude = formInclusao.getLatitude();
+		this.longitude = formInclusao.getLongitude();
 	}
 
 	public Long getId() {
