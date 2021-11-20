@@ -51,8 +51,15 @@ public class EnderecoController {
 	}
 
 	@PostMapping("alterar")
-	public Endereco Alterar(@RequestBody @Valid EnderecoFormAlteracao formAlteracao) { 
-		return enderecoRepository.save(new Endereco(formAlteracao));
+	public ResponseEntity<Endereco>  Alterar(@RequestBody @Valid EnderecoFormAlteracao formAlteracao) { 
+		
+		Optional<Endereco> optional = enderecoRepository.findById(formAlteracao.getId());
+		if (optional.isPresent()) {
+			enderecoRepository.save(new Endereco(formAlteracao));
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.notFound().build();
+
 	}
 
 	@PostMapping("excluir/{id}")
