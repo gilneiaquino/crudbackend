@@ -55,8 +55,9 @@ public class LatitudeLongitude {
 	}
 
 	private JSONObject recuperarServicoGoogle() throws JSONException, IOException {
+		String chaveTemporaria = "AIzaSyCj0cY2yEvVfYhAaTz3-P2MW-YRKmhz5Uw";
 		JSONObject json = readJsonFromUrl(
-				"https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyCj0cY2yEvVfYhAaTz3-P2MW-YRKmhz5Uw");
+				"https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key="+ chaveTemporaria);
 		return json;
 	}
 
